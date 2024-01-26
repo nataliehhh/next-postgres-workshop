@@ -1,8 +1,9 @@
 import { sql } from "@vercel/postgres";
-// import CommentList from "@/components/CommentList";
-import CommentForm from "@/components/CommentsForm";
-import EditComment from "@/components/EditComment";
+import CommentForm from "@/components/CommentForm";
+// import EditComment from "@/components/EditComment";
 import EditCommentButton from "@/components/EditCommentButton"
+import { revalidatePath } from "next/cache";
+
 
 export default async function Comments({ params }) {
     const comments = await sql`
@@ -11,22 +12,41 @@ export default async function Comments({ params }) {
     JOIN beers_comments_junction ON comments.id = beers_comments_junction.comments_id
     WHERE beers_comments_junction.beers_id = ${params.id}`;
 
-    console.log(comments);
+    console.log("params.id", params.id)
+
+    console.log("comment", comments);
+
+    async function handleUpdateComment(formData) {
+        "use server";
+        console.log("Updating comment to the database...");
+
+        const username = formData.get("username");
+        const comment = formData.get("comment");
+        const commentId = formData.get("commentId");
+
+
+        await sql`UPDATE comments SET username = ${username}, comment = ${comment} WHERE id = ${commentId};
+        `;
+        revalidatePath(`/beers/${params.id}`);
+    }
 
     return (
+        <>
         <div>
+            <p>test test</p>
             <ul>
                 {comments.rows.map((comment) => (
                     <li key={comment.id + comment.beer_id}>
                     <h3>{comment.username}</h3>
                     <p>{comment.comment}</p>
                     <p>{comment.id}</p>
-                    <EditCommentButton commentId={comment.id} beerId={params.id} />
+                    <EditCommentButton comment={comment} commentId={comment.id} params={params} handleUpdateComment={handleUpdateComment}/>
                     </li>
                 ))}
                 </ul>
-            <CommentForm />
+            <CommentForm params={params} />
             {/* <EditComment /> */}
         </div>
+        </>
     )
 }

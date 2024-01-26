@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import Comments from "@/components/CommentForm";
+import Comments from "@/components/Comments";
 import DeleteButton from "@/components/DeleteButton";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
