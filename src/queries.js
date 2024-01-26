@@ -1,34 +1,20 @@
-`CREATE TABLE beers (
-    id SERIAL PRIMARY KEY,
-    beer_name VARCHAR(255),
-    category_id INTEGER REFERENCES category_table(id),
-    style VARCHAR(255),
-    brewery VARCHAR(255),
-    abv DECIMAL(4, 2)
-);`
+// select all columns from beers table, join to category table, where id = ?
+`SELECT beers.id, beers.beer_name, beers.style, beers.brewery, beers.abv, beers.review, category_table.category AS category
+FROM beers 
+JOIN category_table ON beers.category_id = category_table.id
+WHERE beers.id = 3;`
 
-`CREATE TABLE category_table (
-    id SERIAL PRIMARY KEY,
-    category VARCHAR(255)
-);`
+// add new beer post and return the id
+`INSERT INTO beers (beer_name, category_id, style, brewery, abv, review) VALUES (${beer_name}, ${categoryId}, ${style}, ${brewery}, ${abv}, ${review})
+RETURNING id;`
 
-`INSERT INTO category_table (category) VALUES
-('Pale Ale'),
-('IPA'),
-('Brown Ale'),
-('Dark Ale'),
-('Fruit/Sour'),
-('Farmhouse');`
+//Select all comments with respective beer id
+`SELECT comments.id, comments.username, comments.comment, comments.created, beers_comments_junction.beers_id
+FROM comments
+JOIN beers_comments_junction ON comments.id = beers_comments_junction.comments_id`
 
-`INSERT INTO beers (beer_name, category_id, style, brewery, abv) VALUES
-('Carmen', '1', 'Mosaic Pale Ale', 'Carnival', 5.0),
-('Mosaic', '1', 'Mosaic Pale Ale', 'Neptune', 4.5),
-('South Down Baxter', '2', 'West Coast IPA', 'Blacklodge', 6.5),
-('Hicky The Rake', '1', 'Lemonata Pale', 'Wylam', 4.0),
-('Saison Provision 2023', '6', 'Mixed Ferment Saison', 'Burning Sky', 7.0),
-('Rivalita', '4', 'Imperial Stout', 'Pollys', 9.0),
-('Lambic Geuze', '5', 'Lambic', '3 Fonteinen', 6.0),
-('Wee Mcash', '3', 'Bitter', 'Five Kingdoms', 4.5);`
-
-`SELECT * FROM beers 
-JOIN category_table ON beers.category_id = category_table.id`
+// Select all comments for specific beer id
+`SELECT comments.id, comments.username, comments.comment, comments.created, beers_comments_junction.beers_id
+FROM comments
+JOIN beers_comments_junction ON comments.id = beers_comments_junction.comments_id
+WHERE beers_comments_junction.beers_id = ${id}`

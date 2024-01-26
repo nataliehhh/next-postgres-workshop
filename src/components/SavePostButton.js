@@ -6,7 +6,7 @@ export default function SavePostButton() {
 
     return (
         <button type="submit" disabled={formStatus.pending}>
-            {formStatus.pending ? "Submitting beer..." : "Save"}
+            {formStatus.pending ? "Submitting..." : "Save"}
         </button>
     )
 }
