@@ -1,3 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: tomato;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+footer {
+  background-color: coral;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  width: 100vw;
+  position: absolute;
+  bottom: 0%;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
 nav {
   display: flex;
   gap: 1rem;
@@ -15,4 +53,8 @@ form button {
   width: 100px;
   border-radius: 20px;
   align-self: center;
+}
+
+.dropdown {
+  padding: 1rem;
 }

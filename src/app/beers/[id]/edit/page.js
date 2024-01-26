@@ -29,7 +29,6 @@ export default async function EditBeer({params}) {
 
         const updatedBeer = await sql`UPDATE beers SET beer_name = ${beer_name}, style = ${style}, brewery = ${brewery}, abv = ${abv}, review = ${review}, category_id = ${categoryId} WHERE beers.id = ${params.id};
         `;
-        console.log("params.id on edit beer page", params.id)
         revalidatePath(`/beers/${params.id}`);
         redirect(`/beers/${params.id}`);
     }

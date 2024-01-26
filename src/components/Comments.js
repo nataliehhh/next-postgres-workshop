@@ -1,6 +1,5 @@
 import { sql } from "@vercel/postgres";
 import CommentForm from "@/components/CommentForm";
-// import EditComment from "@/components/EditComment";
 import EditCommentButton from "@/components/EditCommentButton"
 import { revalidatePath } from "next/cache";
 
@@ -24,29 +23,23 @@ export default async function Comments({ params }) {
         const comment = formData.get("comment");
         const commentId = formData.get("commentId");
 
-
         await sql`UPDATE comments SET username = ${username}, comment = ${comment} WHERE id = ${commentId};
         `;
         revalidatePath(`/beers/${params.id}`);
     }
 
     return (
-        <>
         <div>
-            <p>test test</p>
             <ul>
                 {comments.rows.map((comment) => (
                     <li key={comment.id + comment.beer_id}>
                     <h3>{comment.username}</h3>
                     <p>{comment.comment}</p>
-                    <p>{comment.id}</p>
                     <EditCommentButton comment={comment} commentId={comment.id} params={params} handleUpdateComment={handleUpdateComment}/>
                     </li>
                 ))}
                 </ul>
             <CommentForm params={params} />
-            {/* <EditComment /> */}
         </div>
-        </>
     )
 }

@@ -1,7 +1,13 @@
 import { sql } from "@vercel/postgres";
 import Link from "next/link";
+import SortDropdown from "@/components/SortDropdown";
+import CategoryDropdown from "@/components/CategoryDropdown";
 
 export default async function ListPage({ searchParams }) {
+  const categoryOptions = await sql`
+    SELECT * FROM category_table;
+    `;
+  
   const result = await sql`
   SELECT beers.id, beers.beer_name, beers.style, beers.brewery, beers.abv, category_table.category AS category
   FROM beers 
@@ -16,22 +22,14 @@ export default async function ListPage({ searchParams }) {
   if (searchParams.category) {
     beers = beers.filter((beer) => 
     beer.category == searchParams.category)
-    console.log("searchParams", searchParams)
-    console.log("filtered beers", beers)
-    console.log("beer.category", beers.category)
   }
 
   return (
     <div>
       <h2>All Beers</h2>
-      <Link href="/beers?sort=asc">Sort ascending</Link>
-      <Link href="/beers?sort=desc">Sort descending</Link>
-      <Link href="/beers?category=Pale%20Ale">Pale Ale</Link>
-      <Link href="/beers?category=IPA">IPA</Link>
-      <Link href="/beers?category=Brown%20Ale">Brown Ale</Link>
-      <Link href="/beers?category=Dark%20Ale">Dark Ale</Link>
-      <Link href="/beers?category=Fruit/Sour">Fruit/Sour</Link>
-      <Link href="/beers?category=Farmhouse">Farmhouse</Link>
+      <SortDropdown />
+      <CategoryDropdown categoryOptions={categoryOptions} />
+
       <ul>
         {beers.map((beer) => (
           <li key={beer.id}>
