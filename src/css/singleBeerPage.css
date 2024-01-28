@@ -1,0 +1,105 @@
+.singleBeerPage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 550px 250px;
+    height: 70vh;
+}
+
+.beerProfile {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    gap: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.buttonArea {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-left: 10%;
+}
+
+.buttonArea button {
+    width: 150px;
+    padding: 10px;
+    margin: 0;
+}
+
+.buttonArea a {
+    text-decoration: none;
+    color: var(--font-black);
+}
+
+.commentsArea {
+    width: 800px;
+}
+
+.commentsList {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;    
+}
+
+.commentForm {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    margin-top: 2rem;
+    margin-left: 5%;
+    width: 400px;
+}
+
+.commentsList li h3 {
+    font-size: 1.5rem;
+}
+
+.commentsList p {
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+.commentsList li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    gap: 10px;
+}    
+
+.editCommentButton {
+    font-size: 1rem;
+    width: 70px;   
+}
+
+.commentForm {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.commentsArea {
+    padding: 10%;
+}
+
+.editCommentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 1.2rem;
+    width: 400px;
+}
+

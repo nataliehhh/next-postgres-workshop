@@ -2,6 +2,7 @@ import { sql } from "@vercel/postgres";
 import Link from "next/link";
 import SortDropdown from "@/components/SortDropdown";
 import CategoryDropdown from "@/components/CategoryDropdown";
+import "@/css/beersPage.css"
 
 export default async function ListPage({ searchParams }) {
   const categoryOptions = await sql`
@@ -25,18 +26,22 @@ export default async function ListPage({ searchParams }) {
   }
 
   return (
-    <div>
-      <h2>All Beers</h2>
-      <SortDropdown />
-      <CategoryDropdown categoryOptions={categoryOptions} />
+    <div className="beersPage">
+        <div className="filterArea"> 
+          <h3>Filter</h3>
+          <SortDropdown />
+          <CategoryDropdown categoryOptions={categoryOptions} />
+          <button className="showAll"><Link href="/beers">Show All</Link></button>
+        </div>
 
-      <ul>
+      <ul className="beerList">
         {beers.map((beer) => (
           <li key={beer.id}>
-            <Link href={`/beers/${beer.id}`}>{beer.beer_name}</Link>
+            <Link href={`/beers/${beer.id}`}>{beer.beer_name} - {beer.brewery}</Link>
             </li>
         ))}
       </ul>
+     
     </div>
   );
 }

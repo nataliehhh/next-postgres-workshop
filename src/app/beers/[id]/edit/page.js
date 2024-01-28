@@ -1,7 +1,10 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import SavePostButton from "@/components/SavePostButton"
+import SavePostButton from "@/components/SavePostButton";
+import "@/css/form.css";
+import beerTap from "@/../public/beer-tap.jpg";
+import Image from "next/image";
 
 export default async function EditBeer({params}) {
     const categoryOptions = await sql`
@@ -34,7 +37,8 @@ export default async function EditBeer({params}) {
     }
 
     return (
-       <form action={handleUpdateBeer}>
+        <div className="formPage">
+       <form className="mainForm" action={handleUpdateBeer}>
         <label htmlFor="beer_name">Beer Name</label>
         <input id="beer_name" name="beer_name" type="text" required defaultValue={beer.beer_name} />
 
@@ -60,5 +64,14 @@ export default async function EditBeer({params}) {
 
         <SavePostButton />
        </form> 
+          <div className="colorAreaFormPage"></div>
+          <div className="imageAreaFormPage">
+           <Image
+            src={beerTap}
+            alt="Beer being poured from tap behind a bar decorated with old skateboards" 
+            placeholder="blur"
+            />
+          </div>
+     </div>
     )
 }

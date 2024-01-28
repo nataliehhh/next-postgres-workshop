@@ -2,6 +2,7 @@ import { sql } from "@vercel/postgres";
 import CommentForm from "@/components/CommentForm";
 import EditCommentButton from "@/components/EditCommentButton"
 import { revalidatePath } from "next/cache";
+import "@/css/singleBeerPage.css";
 
 
 export default async function Comments({ params }) {
@@ -10,10 +11,6 @@ export default async function Comments({ params }) {
     FROM comments
     JOIN beers_comments_junction ON comments.id = beers_comments_junction.comments_id
     WHERE beers_comments_junction.beers_id = ${params.id}`;
-
-    console.log("params.id", params.id)
-
-    console.log("comment", comments);
 
     async function handleUpdateComment(formData) {
         "use server";
@@ -29,8 +26,8 @@ export default async function Comments({ params }) {
     }
 
     return (
-        <div>
-            <ul>
+        <div className="commentsArea">
+            <ul className="commentsList">
                 {comments.rows.map((comment) => (
                     <li key={comment.id + comment.beer_id}>
                     <h3>{comment.username}</h3>

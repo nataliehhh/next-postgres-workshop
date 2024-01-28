@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
+import { Lilita_One, Nunito } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 
-const inter = Inter({ subsets: ["latin"] });
+const lilitaOne = Lilita_One({ subsets: ["latin"], weight: ["400"]});
+const nunito = Nunito({subsets: ["latin"], weight: ["300", "700", "900"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -14,8 +15,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header /> 
+      <body className={nunito.className}>
+        <Header lilitaOne={lilitaOne}/> 
         {children}
         <Footer />
       </body>

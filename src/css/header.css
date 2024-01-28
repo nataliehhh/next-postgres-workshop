@@ -1,0 +1,45 @@
+header {
+    color: var(--font-black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 20vh;
+    margin: 0 5%;
+  }
+  
+h1 {
+    text-transform: uppercase;
+    font-size: 6rem;
+  }
+
+nav a {
+    color: var(--font-black);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+nav a:hover {
+    text-decoration: underline;
+}
+  
+nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+button {
+    background-color: var(--blue);
+    color: var(--font-black);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    width: 100px;
+    padding: 8px;
+}
+
+button:hover {
+    background-color: var(--yellow);
+}

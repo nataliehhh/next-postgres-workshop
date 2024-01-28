@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <footer>
-            <p>footer</p>
+            <p>&copy; 2024 Beerbase ltd.</p>
         </footer>
     )
 }

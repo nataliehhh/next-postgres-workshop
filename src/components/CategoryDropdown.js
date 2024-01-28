@@ -5,9 +5,10 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 export default function CategoryDropdown({categoryOptions}) {
     console.log("catOpts prop", categoryOptions)
     return (
-        <DropdownButton id="CategoryDropdown" title="Category">
+        <DropdownButton id="CategoryDropdown" title="Category" drop="down-centered">
            
-           {/* {categoryOptions.row.map((option) => (
+           {/* Tried to use map() to populate the dropdown options from category table but array was empty at map(), console.logged correctly above however so unsure why not working?
+           /* {categoryOptions.row.map((option) => (
             <Dropdown.Item href={`/beers?category=${option.category}`}>{option.category}</Dropdown.Item>
            ))}  */}
             

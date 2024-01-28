@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import SavePostButton from "@/components/SavePostButton"
+import "@/css/singleBeerPage.css";
 
 export default function CommentForm({ params }) {
 
@@ -24,7 +25,8 @@ export default function CommentForm({ params }) {
     }
 
     return (
-       <form action={handleAddComment}>
+       <form className="commentForm" action={handleAddComment}>
+        <p>Leave a comment below!</p>
         <label htmlFor="username">Username</label>
         <input id="username" name="username" type="text" required />
 

@@ -4,6 +4,7 @@ import DeleteButton from "@/components/DeleteButton";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
+import "@/css/singleBeerPage.css";
 
 export default async function SingleBeerPage({ params }) {
     
@@ -28,16 +29,22 @@ export default async function SingleBeerPage({ params }) {
     }
 
     return (
-        <div>
-            <h2>Beer Name: {beer.beer_name}</h2>
-            <p>Category: {beer.category}</p>
-            <p>Style: {beer.style}</p>
-            <p>Brewery: {beer.brewery}</p>
-            <p>ABV: {beer.abv}</p>
-            <p>Review: {beer.review}</p>
-            <Link href={`/beers/${beer.id}/edit`}>Edit Beer</Link>
-            <DeleteButton handleDeleteBeer={handleDeleteBeer} />
-            <Comments params={params} />
+        <div className="singleBeerPage">
+            <div className="beerProfile">
+                <h2>Beer Name: {beer.beer_name}</h2>
+                <p>Category: {beer.category}</p>
+                <p>Style: {beer.style}</p>
+                <p>Brewery: {beer.brewery}</p>
+                <p>ABV: {beer.abv}%</p>
+                <p>Review: {beer.review}</p>
+            </div>
+            <div className="buttonArea">
+                <button>
+                    <Link href={`/beers/${beer.id}/edit`}>Edit Beer</Link>
+                </button>
+                <DeleteButton handleDeleteBeer={handleDeleteBeer} />
+            </div>
+            <Comments className="commentsArea" params={params} />
         </div>
     );
 }
