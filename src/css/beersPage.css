@@ -1,8 +1,8 @@
 .beersPage {
     display: grid;
-    grid-template-columns: 350px 1fr 350px;
+    grid-template-columns: 350px 1fr;
     grid-template-rows: 1fr;
-    margin: 5% 5%;
+    margin: 2% 5%;
     height: 70vh;
 }
 
@@ -57,26 +57,29 @@ a {
     color: #fff;
   }
 
-.beerList {
+.beerListArea {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    max-height: 800px;
 }
 
 .beerList {
     list-style-type: none;
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
+    flex-direction: column;
+    columns: 2 auto;
     gap: 1rem;
-
-  }
+    width: 600px;
+    height: 800px;
+}
 
 .beerList li {
     font-size: 1.8rem;
     border: 1px solid black;
     border-radius: 12px;
     padding: 8px;
-    max-width: 600px;
+    width: 600px;   
 }
 
 .beerList a:hover {

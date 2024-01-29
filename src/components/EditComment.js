@@ -3,7 +3,7 @@ import "@/css/singleBeerPage.css"
 
 export default function CommentForm({ comment, handleUpdateComment, setModal }) {
     return (
-       <form className="editCommentForm" action={handleUpdateComment}>
+       <form className="editCommentForm" formKey="editCommentForm" action={handleUpdateComment}>
         <label htmlFor="username">Username</label>
         <input id="username" name="username" type="text" required defaultValue={comment.username}/>
 
@@ -11,7 +11,7 @@ export default function CommentForm({ comment, handleUpdateComment, setModal }) 
         <textarea id="comment" name="comment" type="text" required defaultValue={comment.comment}></textarea>
 
         <input name="commentId" value={comment.id} type="hidden" />        
-        <SavePostButton setModal={setModal} />
+        <SavePostButton formKey="editCommentForm" setModal={setModal} />
        </form> 
     );
 }

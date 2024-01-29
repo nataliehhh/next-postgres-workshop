@@ -34,6 +34,7 @@ export default async function ListPage({ searchParams }) {
           <button className="showAll"><Link href="/beers">Show All</Link></button>
         </div>
 
+      <div className="beerListArea">
       <ul className="beerList">
         {beers.map((beer) => (
           <li key={beer.id}>
@@ -41,7 +42,7 @@ export default async function ListPage({ searchParams }) {
             </li>
         ))}
       </ul>
-     
+      </div>     
     </div>
   );
 }

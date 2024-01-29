@@ -26,7 +26,8 @@ export default async function AddBeer() {
         const newBeer = await sql`INSERT INTO beers (beer_name, category_id, style, brewery, abv, review) VALUES (${beer_name}, ${categoryId}, ${style}, ${brewery}, ${abv}, ${review})
         RETURNING *;
         `;
-        const newBeerId = newBeer.row[0].id;
+        console.log("newBeer", newBeer)
+        const newBeerId = newBeer.rows[0].id;
         console.log("New Beer Id", newBeerId);
         revalidatePath("/beers");
         redirect("/beers");
