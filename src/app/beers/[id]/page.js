@@ -21,6 +21,7 @@ export default async function SingleBeerPage({ params }) {
     async function handleDeleteBeer() {
         "use server";
         console.log("delete clicked")
+        // added the junction table deletion Monday morning, had not noticed this issue until was mentioned, must not have tested delete on a post with comments.
         await sql`
         DELETE FROM beers_comments_junction WHERE beers_id = ${params.id};
         `
