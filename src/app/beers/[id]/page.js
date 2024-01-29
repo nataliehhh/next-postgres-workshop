@@ -22,6 +22,9 @@ export default async function SingleBeerPage({ params }) {
         "use server";
         console.log("delete clicked")
         await sql`
+        DELETE FROM beers_comments_junction WHERE beers_id = ${params.id};
+        `
+        await sql`
         DELETE FROM beers WHERE id = ${params.id};
         `
         revalidatePath("/beers");
